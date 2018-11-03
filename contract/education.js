@@ -1,6 +1,6 @@
 module.exports = {
   registerResults: async function(address, name, physics, chemistry, math) {
-    console.log("registerResults this: ", this);
+    console.log("calling contract registerResults: ", this);
     console.log("total: ", parseInt(physics) + parseInt(chemistry) + parseInt(math));
     app.sdb.lock('education.registerResult@' + address);
     let exists = await app.model.Education.exists({address: address});
@@ -14,9 +14,6 @@ module.exports = {
       chemistry: chemistry,
       math: math,
       total: (parseInt(physics) + parseInt(chemistry) + parseInt(math))
-    }, function(err, data) {
-      console.log("err: ", err);
-      console.log("data: ", data);
     });
   }
 }
